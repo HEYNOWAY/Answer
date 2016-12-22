@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DemoForTest</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="toorbar_titel">首页</string>
+    <string name="sure">确定</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_user_info">UserInfoActivity</string>
+</resources>

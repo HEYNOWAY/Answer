@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements View.OnClickListener {
-    private static final String TAG = "RecyclerViewAdapter";
+public class QuestionListRecyclerViewAdapter extends RecyclerView.Adapter<QuestionListRecyclerViewAdapter.ViewHolder> implements View.OnClickListener {
+    private static final String TAG = "QuestionListRecyclerViewAdapter";
     private List<Question> mDataList = new ArrayList<>();
     private Context context;
     private OnRecyclerViewItemClickListener mItemClickListener;
@@ -37,7 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public RecyclerViewAdapter(Context context, List<Question> list) {
+    public QuestionListRecyclerViewAdapter(Context context, List<Question> list) {
         this.mDataList = list;
         this.context = context;
     }

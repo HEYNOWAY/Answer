@@ -9,6 +9,7 @@ import java.util.List;
  */
 
 public interface QuestionPresenter {
-    void getQuestionList(int userid);
+    void getLastQuestionList(int userid);
+    void getHotestQuestionList(int userid);
     void unSubscribe();
 }

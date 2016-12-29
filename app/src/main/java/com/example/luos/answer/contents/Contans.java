@@ -5,7 +5,7 @@ package com.example.luos.answer.contents;
  */
 
 public class Contans {
-    public static final String baseurl = "http://192.168.130.224:8080";
+    public static final String baseurl = "http://172.22.71.31:8080";
 
     public static final class SharedPreferencesKeys {
         public static final String KEY_SHOULD_ENABLE_ACCELERATE_SERVER = "enable_accelerate_server?";

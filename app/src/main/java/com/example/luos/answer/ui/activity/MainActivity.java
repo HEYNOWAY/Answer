@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity implements IMainView,ProgresserCa
     private void initView() {
         toolbar = (Toolbar) findViewById(R.id.toobar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("MyDemo");
+        getSupportActionBar().setTitle(getString(R.string.home));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mTabLayout = (TabLayout) findViewById(R.id.main_activity_tabs);
@@ -83,8 +83,8 @@ public class MainActivity extends BaseActivity implements IMainView,ProgresserCa
         lastFragment = new MainFragment();
         hotFragment.setRefreshListener(this);
         lastFragment.setRefreshListener(this);
-        adpter.addFragment(hotFragment,"最热");
-        adpter.addFragment(lastFragment,"最新");
+        adpter.addFragment(hotFragment,getString(R.string.hotest));
+        adpter.addFragment(lastFragment,getString(R.string.lastest));
         mViewpager.setAdapter(adpter);
         mTabLayout.setupWithViewPager(mViewpager);
     }
@@ -92,9 +92,9 @@ public class MainActivity extends BaseActivity implements IMainView,ProgresserCa
     private void initDatas() {
         ProgressDialogHandler progressDialoghandler = new ProgressDialogHandler(this,true,this);
         questionPresenter = new QuestionPresenterImpl(this,progressDialoghandler);
-//        questionPresenter.getQuestionList(1);
+        questionPresenter.getHotestQuestionList(1);
+        questionPresenter.getLastQuestionList(1);
     }
-
 
     private void setupDrawContent(final NavigationView mNavigationView) {
         Log.i(TAG,"setupDrawContent");
@@ -107,18 +107,22 @@ public class MainActivity extends BaseActivity implements IMainView,ProgresserCa
                     case R.id.navigation_menu_example1:
                         Log.i(TAG,"menu1 onClick");
                         buildDialog("menu_example1");
+                        //do something...
                         break;
                     case R.id.navigation_menu_example2:
                         Log.i(TAG,"menu1 onClick");
                         buildDialog("menu_example2");
+                        //do something...
                         break;
                     case R.id.navigation_menu_example3:
                         Log.i(TAG,"menu1 onClick");
                         buildDialog("menu_example3");
+                        //do something...
                         break;
                     case R.id.navigation_menu_example4:
                         Log.i(TAG,"menu1 onClick");
                         buildDialog("menu_example4");
+                        //do something...
                         break;
                 }
                 item.setChecked(true);
@@ -152,7 +156,6 @@ public class MainActivity extends BaseActivity implements IMainView,ProgresserCa
     }
 
 
-
     @Override
     public void setDialogOfMessage(String message) {
         this.buildDialog(message);
@@ -180,8 +183,17 @@ public class MainActivity extends BaseActivity implements IMainView,ProgresserCa
 
     @Override
     public void dismissSwipeRefreshLayout() {
-        hotFragment.dismissSwipeRefreshLayout();
-        lastFragment.dismissSwipeRefreshLayout();
+        if(mViewpager==null)
+            return;
+        switch (mViewpager.getCurrentItem()){
+            case 0 :
+                hotFragment.dismissSwipeRefreshLayout();
+                break;
+            case 1 :
+                lastFragment.dismissSwipeRefreshLayout();
+                break;
+        }
+
     }
 
     @Override
@@ -191,6 +203,15 @@ public class MainActivity extends BaseActivity implements IMainView,ProgresserCa
 
     @Override
     public void doRefresh() {
-        questionPresenter.getQuestionList(1);
+        if(mViewpager==null)
+            return;
+        switch (mViewpager.getCurrentItem()){
+            case 0 :
+                questionPresenter.getHotestQuestionList(1);
+                break;
+            case 1 :
+                questionPresenter.getLastQuestionList(1);
+                break;
+        }
     }
 }

@@ -3,6 +3,8 @@ package com.example.luos.answer.network.API;
 import com.example.luos.answer.module.Answer;
 import com.example.luos.answer.module.HttpResult;
 
+import java.util.ArrayList;
+
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
@@ -15,6 +17,10 @@ import rx.Observable;
  */
 
 public interface AnswerAPI {
+
+    @GET("/answer/detail")
+    Observable<HttpResult<ArrayList<Answer>>> getAnswerList(@Query("questionid") int questionid);
+
     @POST("/answer/add")
     Observable<HttpResult<String>> addAnswer(@Body Answer answer);
 

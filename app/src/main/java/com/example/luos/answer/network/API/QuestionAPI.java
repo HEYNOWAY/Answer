@@ -19,11 +19,11 @@ import rx.Observable;
  */
 
 public interface QuestionAPI {
-    @GET("/question/getList")
-    Observable<HttpResult<ArrayList<Question>>> getQuestionList(@Query("userid") int userid);
+    @GET("/question/getLastestQuestionList")
+    Observable<HttpResult<ArrayList<Question>>> getLastestQuestionList(@Query("userid") int userid);
 
-    @GET("/question/detail")
-    Observable<HttpResult<ArrayList<Answer>>> getQuestionDetail(@Query("questionid") int questionid);
+    @GET("/question/getHotestQuestionList")
+    Observable<HttpResult<ArrayList<Question>>> getHostestQuestionList(@Query("userid") int userid);
 
     @POST("/question/ask")
     Observable<HttpResult<String>> askQuestion(@Body Question question);

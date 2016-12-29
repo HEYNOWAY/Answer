@@ -8,5 +8,5 @@ import com.example.luos.answer.module.Question;
  */
 
 public interface OnRecyclerViewItemClickListener {
-    void OnItemClick(View view, Question data);
+    void OnItemClick(View view, Object data);
 }

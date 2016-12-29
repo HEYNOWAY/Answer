@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">DemoForTest</string>
+    <string name="app_name">Answer</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-    <string name="toorbar_titel">首页</string>
+    <string name="toorbar_titel">Title</string>
     <string name="sure">确定</string>
+    <string name="home">首页</string>
+    <string name="lastest">最新</string>
+    <string name="hotest">最热</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

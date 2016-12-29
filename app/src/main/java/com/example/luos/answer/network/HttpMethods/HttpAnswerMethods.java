@@ -4,6 +4,8 @@ import com.example.luos.answer.module.Answer;
 import com.example.luos.answer.module.HttpResult;
 import com.example.luos.answer.network.API.AnswerAPI;
 
+import java.util.ArrayList;
+
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -18,6 +20,15 @@ public class HttpAnswerMethods {
 
     public HttpAnswerMethods(){
         answerService = HttpPrepared.getInstance().getAnswerAPI();
+    }
+
+    public void getAnswerList(int questionid, Subscriber<ArrayList<Answer>> subscriber){
+        answerService.getAnswerList(questionid)
+                .map(new HttpResultFunc<ArrayList<Answer>>())
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
     }
 
     public void addAnswer(Answer answer, Subscriber<String> subscriber){
@@ -82,13 +93,7 @@ public class HttpAnswerMethods {
 
     public void collectedAnswer(int userid,int answerid,Subscriber<String> subscriber){
         answerService.collectedAnswer(userid,answerid)
-                .map(new Func1<HttpResult<String>, String>() {
-                    @Override
-                    public String call(HttpResult<String> stringHttpResult) {
-                        //do something...
-                        return null;
-                    }
-                })
+                .map(new HttpResultFunc<String>())
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
